@@ -131,21 +131,18 @@ namespace Tanks
 			if (time - _fireTime < _reloadDelay) return;
 			if(_findReloader) _reloader.SetReload(_reloadDelay);
 			_fireTime = time;
-
+			
 			//Set direction and position
 			var bullet = _pool.GetElement();
-			var forward = FirePoint.forward;
-			var position = FirePoint.position;
-			bullet.Velocity = forward * Velocity;
-			var transform = bullet.transform;
-			transform.position = position;
-			transform.forward = forward;
+			bullet.SetPosition(FirePoint);
+			bullet.AddForce(Velocity);
+
 			//Create fire effect
 			_muzzleEffect.Play();
 			_smokeEffect.Emit(_emitSmokeCount);
 			//Shot audio
 			if(!_audioPool.IsBroken)
-				_audioPool.PlaySound(position, _fireSound);
+				_audioPool.PlaySound(FirePoint.position, _fireSound);
 			//Add force
 			if(_findBody)
 				_body.AddForce(this.transform.forward * -_firePower);
