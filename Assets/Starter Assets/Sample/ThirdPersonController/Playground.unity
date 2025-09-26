@@ -5658,6 +5658,9 @@ MonoBehaviour:
   walkSpeed: 2
   runSpeed: 5
   animator: {fileID: 5777780407394447769}
+  agent: {fileID: 5777780407394447771}
+  stateTimer: 0
+  targetItem: {fileID: 0}
 --- !u!1 &5781860122667532321
 GameObject:
   m_ObjectHideFlags: 0
